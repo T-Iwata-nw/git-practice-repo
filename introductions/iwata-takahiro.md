@@ -1,7 +1,3 @@
-B
+Iwata Takahiro
 
-D
-
-C
-C
-my nam
+git_benkyokai_2
