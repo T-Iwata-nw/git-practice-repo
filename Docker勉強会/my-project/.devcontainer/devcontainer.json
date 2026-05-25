@@ -1,0 +1,28 @@
+{
+  // この Dev Container の名前（VS Code左下に表示される）
+  "name": "Python Dev Container",
+
+  // 使用するDockerイメージ（Microsoft公式のPython 3.11入りイメージ）
+  // Docker Hubの "mcr.microsoft.com/devcontainers/python:3.11" を自動でpullする
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+
+  // コンテナ内のVS Codeに関する設定
+  "customizations": {
+    "vscode": {
+      // コンテナ起動時に自動インストールするVS Code拡張機能
+      // ローカル側ではなく "コンテナ側" にインストールされる点に注意
+      "extensions": [
+        "ms-python.python",
+        "ms-python.black-formatter"
+      ]
+    }
+  },
+
+  // コンテナ作成後に1回だけ実行されるコマンド
+  // 例：requirements.txtがあればここでまとめてpip install するのが定番
+  "postCreateCommand": "pip install --upgrade pip",
+
+  // コンテナ内のポートをホスト（ローカルPC）に転送する
+  // 例：Flaskで8000番を使う場合、ブラウザから http://localhost:8000 で開ける
+  "forwardPorts": [8000]
+}

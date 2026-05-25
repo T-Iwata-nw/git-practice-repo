@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -n '\\\\\\\\n' \"Docker勉強会/Docker勉強会_受講者用資料.md\")"
+    ]
+  }
+}

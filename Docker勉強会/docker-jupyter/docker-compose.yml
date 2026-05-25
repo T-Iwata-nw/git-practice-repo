@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  jupyter:
+    image: continuumio/anaconda3      # AnacondaのDockerイメージを使用
+    container_name: jupyter-lab
+    ports:
+      - "8888:8888"                   # PC側の8888番ポート → コンテナの8888番ポート
+    volumes:
+      - ./notebooks:/notebooks        # PC側のnotebooks/ → コンテナの/notebooks
+    working_dir: /notebooks           # コンテナ内の作業ディレクトリ
+    command: >
+      /bin/bash -c "
+      pip install jupyterlab &&
+      jupyter lab
+      --ip=0.0.0.0
+      --port=8888
+      --no-browser
+      --allow-root
+      --NotebookApp.token=''
+      --NotebookApp.password=''
+      "
+    restart: unless-stopped
