@@ -620,7 +620,7 @@ def index():
     return f"<h1>Hello from Docker + Flask!</h1><p>現在時刻: {now}</p>"
 ```
 
-> **ポイント：** JupyterLabのときに必要だったトークン無効化設定（`--ServerApp.token=` など）は、Flaskでは不要です。`flask run` は最初から認証なしで起動するため、`http://localhost:5000` にアクセスするだけで即座に開きます。
+> `http://localhost:5000` にアクセスするだけで即座に開きます。
 
 ### イメージのビルドとホストフォルダのマウント実行
 
@@ -642,7 +642,7 @@ docker images
 #   -p 5000:5000              … ポート5000をホストに公開
 #   -v "$(pwd):/app"          … 今いるフォルダ（app.pyがある場所）を /app にマウント
 #   --name flask-demo         … コンテナに名前を付ける
-docker run --rm -it -p 5000:5000 -v "$(pwd):/app" --name flask-demo my-flask
+docker run --rm -it -p 5000:5000 -v "/$(pwd):/app" --name flask-demo my-flask
 
 # Windows PowerShell の場合は $(pwd) を ${PWD} に置き換える
 # docker run --rm -it -p 5000:5000 -v "${PWD}:/app" --name flask-demo my-flask
@@ -1104,8 +1104,6 @@ JSON標準ではコメントが書けませんが、`devcontainer.json` は **JS
 | `postCreateCommand` | コンテナ作成後に1回実行するコマンド | `"pip install -r requirements.txt"` |
 | `forwardPorts` | ホストに転送するポート | `[8000, 8888]` |
 | `remoteUser` | コンテナ内で使用するユーザー | `"vscode"` |
-
-> **応用：** `image` の代わりに `dockerComposeFile` や `build.dockerfile` を指定すると、自前の `docker-compose.yml` や `Dockerfile` を使ったDev Containerも作れます。今回は触れませんが、興味があれば公式ドキュメントを参照してください。
 
 ---
 

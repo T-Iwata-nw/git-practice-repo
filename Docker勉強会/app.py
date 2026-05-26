@@ -12,5 +12,5 @@ def index():
         "<h1>Hello from Docker + Flask!</h1>"
         f"<p>現在時刻: {now}</p>"
         "<p>このファイル(app.py)をホスト側で編集して保存すると、"
-        "Flask開発サーバーが自動で反映します。</p>"
+        "Flask開発サーバーが自動で反映します！</p>"
     )
