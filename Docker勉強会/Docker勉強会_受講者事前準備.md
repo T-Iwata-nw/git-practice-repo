@@ -22,7 +22,7 @@ STEP 4: ハンズオン用イメージの事前ダウンロード（重要）
     ↓
 STEP 5: VS Code 拡張機能「Dev Containers」のインストール
     ↓
-STEP 6: ハンズオン用フォルダの作成
+STEP 6: ハンズオン用リポジトリの取得（git pull）
 ```
 
 ---
@@ -187,43 +187,65 @@ continuumio/anaconda3     latest    xxxxxxxxxxxx   x weeks ago    3.5GB
 
 ---
 
-## STEP 6: ハンズオン用フォルダの作成
+## STEP 6: ハンズオン用リポジトリの取得（git pull）
 
-ハンズオンで使用するフォルダを事前に作成しておきます。
+ハンズオンで使用する `docker-compose.yml` や `Dockerfile`、サンプルコードはすべて **Git勉強会で使用した `git-practice-repo` リポジトリ** に含まれています。勉強会当日に最新の状態で利用できるよう、事前に `git pull` で取得しておきます。
 
-### フォルダを作成する
+### リポジトリを最新化する
 
-ターミナルで以下を実行します（デスクトップやドキュメントなど、わかりやすい場所に作成してください）：
+Git勉強会で `git-practice-repo` をすでにクローン済みです。ターミナル（Git Bash または PowerShell）で以下を実行してください：
 
 ```bash
-# 例：ドキュメントフォルダに作成する場合
-cd ~/Documents
+# Git勉強会でクローンした git-practice-repo フォルダに移動
+# （クローン場所が異なる場合はそのパスに読み替えてください）
+cd ~/Projects/git-practice-repo
 
-# プロジェクトフォルダを作成
-mkdir docker-jupyter
-cd docker-jupyter
+# mainブランチに切り替え
+git checkout main
 
-# Notebookを保存するフォルダを作成
-mkdir notebooks
+# 最新の状態を取得
+git pull origin main
+```
 
-# フォルダ構成を確認
+> **まだクローンしていない場合：** 以下のコマンドでクローンしてください（URLはGit勉強会で案内されたものを使用）。
+> ```bash
+> cd ~/Projects
+> git clone <git-practice-repoのURL>
+> cd git-practice-repo
+> ```
+
+### ハンズオンで使うフォルダを確認する
+
+`git pull` 後、リポジトリ内の `Docker勉強会/docker-jupyter/` フォルダにハンズオンで必要なファイルが揃っていることを確認します：
+
+```bash
+cd Docker勉強会/docker-jupyter
 ls
 ```
 
-以下のような表示になっていればOKです：
+以下のように `docker-compose.yml` と `notebooks/` フォルダが表示されればOKです：
 
 ```
+docker-compose.yml
 notebooks/
 ```
 
-### 最終的なフォルダ構成
+### ハンズオンで使うフォルダ構成
 
 ```
-docker-jupyter/          ← プロジェクトフォルダ（ここでコマンドを実行する）
-└── notebooks/           ← Notebookの保存先（空のままでOK）
+git-practice-repo/
+└── Docker勉強会/
+    ├── docker-jupyter/          ← JupyterLabハンズオン用フォルダ（ここでコマンドを実行する）
+    │   ├── docker-compose.yml   ← 配布済み（git pullで取得）
+    │   └── notebooks/           ← Notebookの保存先
+    ├── my-project/              ← Dev Containerハンズオン用フォルダ
+    │   ├── hello.py
+    │   └── README.md
+    ├── app.py                   ← Dockerfileハンズオン用サンプル
+    └── Dockerfile               ← Dockerfileハンズオン用サンプル
 ```
 
-> **`docker-compose.yml` は勉強会当日に講師から配布します。** このファイルを `docker-jupyter/` フォルダに置いてから起動します。
+
 
 ---
 
@@ -238,7 +260,7 @@ docker-jupyter/          ← プロジェクトフォルダ（ここでコマン
 - [ ] `docker pull continuumio/anaconda3` が完了している
 - [ ] `docker images` で `continuumio/anaconda3` が表示される
 - [ ] VS CodeにDev Containers拡張機能がインストールされている（左下に`><`アイコンがある）
-- [ ] `docker-jupyter/notebooks/` フォルダが作成されている
+- [ ] `git-practice-repo` で `git pull origin main` を実行し、`Docker勉強会/docker-jupyter/docker-compose.yml` と `Docker勉強会/docker-jupyter/notebooks/` が存在することを確認した
 
 ---
 
